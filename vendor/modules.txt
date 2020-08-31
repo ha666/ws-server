@@ -1,0 +1,54 @@
+# github.com/cespare/xxhash v1.1.0
+## explicit
+github.com/cespare/xxhash
+# github.com/golang/protobuf v1.4.2
+github.com/golang/protobuf/proto
+# github.com/gorilla/websocket v1.4.2
+## explicit
+github.com/gorilla/websocket
+# github.com/ha666/golibs v2020.712.900+incompatible
+## explicit
+github.com/ha666/golibs
+# github.com/ha666/logs v2019.830.1004+incompatible
+## explicit
+github.com/ha666/logs
+# github.com/ha666/ws-common v0.0.0-20200831061100-3713bc7e1c93
+## explicit
+github.com/ha666/ws-common
+github.com/ha666/ws-common/protocol
+# github.com/jpillora/backoff v1.0.0
+github.com/jpillora/backoff
+# github.com/maurodelazeri/gorilla-reconnect v0.0.0-20180328170005-42501a5438b9
+github.com/maurodelazeri/gorilla-reconnect
+# golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
+## explicit
+golang.org/x/crypto/bcrypt
+golang.org/x/crypto/blowfish
+# google.golang.org/protobuf v1.25.0
+## explicit
+google.golang.org/protobuf/encoding/prototext
+google.golang.org/protobuf/encoding/protowire
+google.golang.org/protobuf/internal/descfmt
+google.golang.org/protobuf/internal/descopts
+google.golang.org/protobuf/internal/detrand
+google.golang.org/protobuf/internal/encoding/defval
+google.golang.org/protobuf/internal/encoding/messageset
+google.golang.org/protobuf/internal/encoding/tag
+google.golang.org/protobuf/internal/encoding/text
+google.golang.org/protobuf/internal/errors
+google.golang.org/protobuf/internal/fieldsort
+google.golang.org/protobuf/internal/filedesc
+google.golang.org/protobuf/internal/filetype
+google.golang.org/protobuf/internal/flags
+google.golang.org/protobuf/internal/genid
+google.golang.org/protobuf/internal/impl
+google.golang.org/protobuf/internal/mapsort
+google.golang.org/protobuf/internal/pragma
+google.golang.org/protobuf/internal/set
+google.golang.org/protobuf/internal/strs
+google.golang.org/protobuf/internal/version
+google.golang.org/protobuf/proto
+google.golang.org/protobuf/reflect/protoreflect
+google.golang.org/protobuf/reflect/protoregistry
+google.golang.org/protobuf/runtime/protoiface
+google.golang.org/protobuf/runtime/protoimpl
