@@ -41,6 +41,9 @@ func ClientIpPort(r *http.Request) string {
 	ip := ""
 	port := ""
 	xForwardedFor := r.Header.Get("X-Forwarded-For")
+	if golibs.Length(xForwardedFor) <= 0 {
+		return r.RemoteAddr
+	}
 	ip = strings.TrimSpace(strings.Split(xForwardedFor, ",")[0])
 	if golibs.Length(ip) <= 0 {
 		return ""

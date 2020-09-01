@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -31,7 +32,7 @@ func echo(w http.ResponseWriter, r *http.Request) {
 	defer c.Close()
 	for {
 		err = ws_common.WriteMessage(c, ws_common.MESSAGEPING, &protocol.Ping{
-			PingVal: golibs.StandardTime(),
+			PingVal: fmt.Sprintf("时间：%s，客户端地址:%s", golibs.StandardTime(), clientAddr),
 		})
 		if err != nil {
 			logs.Error("write:", err)
