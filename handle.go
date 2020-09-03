@@ -40,6 +40,6 @@ func echo(w http.ResponseWriter, r *http.Request) {
 			logs.Info("客户端:%s，退出", clientAddr)
 			break
 		}
-		time.Sleep(time.Second * 10)
+		time.Sleep(time.Second * 30)
 	}
 }
