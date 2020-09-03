@@ -20,6 +20,8 @@ github.com/ha666/ws-common/protocol
 github.com/jpillora/backoff
 # github.com/maurodelazeri/gorilla-reconnect v0.0.0-20180328170005-42501a5438b9
 github.com/maurodelazeri/gorilla-reconnect
+# github.com/onsi/ginkgo v1.14.0
+## explicit
 # golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
 ## explicit
 golang.org/x/crypto/bcrypt
@@ -52,3 +54,11 @@ google.golang.org/protobuf/reflect/protoreflect
 google.golang.org/protobuf/reflect/protoregistry
 google.golang.org/protobuf/runtime/protoiface
 google.golang.org/protobuf/runtime/protoimpl
+# gopkg.in/redis.v5 v5.2.9
+## explicit
+gopkg.in/redis.v5
+gopkg.in/redis.v5/internal
+gopkg.in/redis.v5/internal/consistenthash
+gopkg.in/redis.v5/internal/hashtag
+gopkg.in/redis.v5/internal/pool
+gopkg.in/redis.v5/internal/proto
