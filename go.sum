@@ -36,8 +36,8 @@ github.com/ha666/golibs v2020.712.900+incompatible h1:5MW0RstFe8BOYljsqfB3fj8rwv
 github.com/ha666/golibs v2020.712.900+incompatible/go.mod h1:5Jqz2NoLgSAX3K7rtlJ41unCG5AUEQvJcY10VcCdCe0=
 github.com/ha666/logs v2019.830.1004+incompatible h1:bAHgV6PMrI7YGzUz2TD7JSxDVvZomdm46C5dMPMSGOM=
 github.com/ha666/logs v2019.830.1004+incompatible/go.mod h1:myYl/cnzZI5ZcC7UCGP4RHZc/yRQycJT1FW9nEkvPdk=
-github.com/ha666/ws-common v0.0.0-20200831061100-3713bc7e1c93 h1:oo6uNOUruFpAMDOPn5Vb26ma6A9MH7a5lFGJ4m/EJ4Q=
-github.com/ha666/ws-common v0.0.0-20200831061100-3713bc7e1c93/go.mod h1:NnWUq3C1BTPoaybMXrwLRIUuFPT6FoANoTGwIKFsKOU=
+github.com/ha666/ws-common v0.0.0-20200904090728-584ebf214264 h1:qCISsn2lWuUK1NBAxxdrtW1cwnlvfqbMLoj98OIcUCQ=
+github.com/ha666/ws-common v0.0.0-20200904090728-584ebf214264/go.mod h1:NnWUq3C1BTPoaybMXrwLRIUuFPT6FoANoTGwIKFsKOU=
 github.com/hpcloud/tail v1.0.0/go.mod h1:ab1qPbhIpdTxEkNHXyeSf5vhxWSCs/tWer42PpOxQnU=
 github.com/jpillora/backoff v1.0.0 h1:uvFg412JmmHBHw7iwprIxkPMI+sGQ4kzOWsMeHnm2EA=
 github.com/jpillora/backoff v1.0.0/go.mod h1:J/6gKK9jxlEcS3zixgDgUAsiuZ7yrSoa/FX5e0EB2j4=

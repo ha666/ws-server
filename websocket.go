@@ -1,9 +1,11 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gorilla/websocket"
 	"github.com/ha666/logs"
-	"net/http"
+	"github.com/ha666/ws-server/service"
 )
 
 var upgrader = websocket.Upgrader{
@@ -16,7 +18,7 @@ var upgrader = websocket.Upgrader{
 }
 
 func startWebsocket() {
-	go statisticsClientTotal()
-	http.HandleFunc("/echo", echo)
+	go service.StatisticsClientTotal()
+	http.HandleFunc("/process", process)
 	logs.Emergency(http.ListenAndServe(addr, nil))
 }

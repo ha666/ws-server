@@ -2,6 +2,7 @@
 ## explicit
 github.com/cespare/xxhash
 # github.com/golang/protobuf v1.4.2
+## explicit
 github.com/golang/protobuf/proto
 # github.com/gorilla/websocket v1.4.2
 ## explicit
@@ -12,7 +13,7 @@ github.com/ha666/golibs
 # github.com/ha666/logs v2019.830.1004+incompatible
 ## explicit
 github.com/ha666/logs
-# github.com/ha666/ws-common v0.0.0-20200831061100-3713bc7e1c93
+# github.com/ha666/ws-common v0.0.0-20200904090728-584ebf214264
 ## explicit
 github.com/ha666/ws-common
 github.com/ha666/ws-common/protocol
