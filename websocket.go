@@ -1,11 +1,12 @@
 package main
 
 import (
+	"github.com/ha666/ws-server/service"
+	"github.com/robfig/cron"
 	"net/http"
 
 	"github.com/gorilla/websocket"
 	"github.com/ha666/logs"
-	"github.com/ha666/ws-server/service"
 )
 
 var upgrader = websocket.Upgrader{
@@ -18,7 +19,10 @@ var upgrader = websocket.Upgrader{
 }
 
 func startWebsocket() {
-	go service.StatisticsClientTotal()
+	c := cron.New()
+	c.AddFunc("*/5 * * * * ?", service.StatisticsClientTotal)
+	c.AddFunc("*/10 * * * * ?", service.ProcessDoNotActiveConnection)
+	c.Start()
 	http.HandleFunc("/process", process)
 	logs.Emergency(http.ListenAndServe(addr, nil))
 }

@@ -35,17 +35,27 @@ func process(w http.ResponseWriter, r *http.Request) {
 		logs.Error("心跳失败,%s:%s", clientAddr, err.Error())
 		return
 	}
-	go read(clientAddr, c, r)
-	go write(clientAddr, c)
+	go read(clientAddr, r)
+	go write(clientAddr)
 }
 
-func read(clientAddr string, c *websocket.Conn, r *http.Request) {
+func read(clientAddr string, r *http.Request) {
 	for {
+		val, ok := service.Clients.Load(clientAddr)
+		if !ok || val == nil {
+			logs.Error("连接%s已不存在", clientAddr)
+			return
+		}
+		c, ok := val.(*websocket.Conn)
+		if !ok || c == nil {
+			logs.Error("连接%s解析失败", clientAddr)
+			return
+		}
 		dst, messageType, err := ws_common.ReadMessage(c)
 		if err != nil {
 			logs.Error("read err:", err)
 			if strings.Contains(err.Error(), "close 1006") {
-				if err = service.ClientClose(clientAddr); err != nil {
+				if err = service.CloseClient(clientAddr, c); err != nil {
 					logs.Error("read,客户端%s退出失败:%s", clientAddr, err.Error())
 				} else {
 					logs.Error("read,客户端%s退出成功", clientAddr)
@@ -73,15 +83,26 @@ func read(clientAddr string, c *websocket.Conn, r *http.Request) {
 	}
 }
 
-func write(clientAddr string, c *websocket.Conn) {
+func write(clientAddr string) {
 	for {
 		time.Sleep(5 * time.Second)
+		val, ok := service.Clients.Load(clientAddr)
+		if !ok || val == nil {
+			logs.Error("连接%s已不存在", clientAddr)
+			return
+		}
+		c, ok := val.(*websocket.Conn)
+		if !ok || c == nil {
+			logs.Error("连接%s解析失败", clientAddr)
+			return
+		}
 		if err := ws_common.WriteMessage(c, ws_common.MESSAGEPONG, &protocol.Pong{
 			PongVal: fmt.Sprintf("时间：%s，客户端地址:%s", golibs.StandardTime(), clientAddr),
 		}); err != nil {
 			logs.Error("pong发送失败:%s", err.Error())
-			if strings.Contains(err.Error(), "write: broken pipe") {
-				if err = service.ClientClose(clientAddr); err != nil {
+			if strings.Contains(err.Error(), "write: broken pipe") ||
+				strings.Contains(err.Error(), "wsasend: An established connection was aborted by the software in your host machine.") {
+				if err = service.CloseClient(clientAddr, c); err != nil {
 					logs.Error("write,客户端%s退出失败:%s", clientAddr, err.Error())
 				} else {
 					logs.Error("write,客户端%s退出成功", clientAddr)

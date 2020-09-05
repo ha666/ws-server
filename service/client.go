@@ -14,6 +14,8 @@ import (
 	"gopkg.in/redis.v5"
 )
 
+const clientsName = "clients"
+
 var (
 	Clients     sync.Map
 	RedisClient *redis.Client
@@ -46,21 +48,18 @@ func InitRedis() {
 }
 
 func StatisticsClientTotal() {
-	for {
-		time.Sleep(time.Second * 3)
-		count := 0
-		Clients.Range(func(k, v interface{}) bool {
-			count++
-			return true
-		})
-		logs.Info("客户端总数:%d", count)
-	}
+	count := 0
+	Clients.Range(func(k, v interface{}) bool {
+		count++
+		return true
+	})
+	logs.Info("客户端总数:%d", count)
 }
 
 //客户端心跳
 func ClientHeartbeat(clientAddr string, c *websocket.Conn) error {
 	Clients.LoadOrStore(clientAddr, c)
-	result := RedisClient.ZAdd("clients", redis.Z{
+	result := RedisClient.ZAdd(clientsName, redis.Z{
 		Score:  float64(golibs.UnixMilliSecond()),
 		Member: clientAddr,
 	})
@@ -70,14 +69,42 @@ func ClientHeartbeat(clientAddr string, c *websocket.Conn) error {
 	return nil
 }
 
-//客户端关闭
-func ClientClose(clientAddr string) error {
+//关闭客户端
+func CloseClient(clientAddr string, c *websocket.Conn) error {
+	if c != nil {
+		c.Close()
+	}
 	Clients.Delete(clientAddr)
-	result := RedisClient.ZRem("clients", clientAddr)
+	result := RedisClient.ZRem(clientsName, clientAddr)
 	if result.Err() != nil {
 		return result.Err()
 	}
 	return nil
+}
+
+//处理不活跃连接
+func ProcessDoNotActiveConnection() {
+	result := RedisClient.ZRangeByScore(clientsName, redis.ZRangeBy{
+		Min:    "0",
+		Max:    fmt.Sprintf("%d", golibs.UnixMilliSecond()-60000),
+		Offset: 0,
+		Count:  100,
+	})
+	if result.Err() != nil {
+		logs.Error("查询不活跃连接出错:%s", result.Err().Error())
+		return
+	}
+	for _, v := range result.Val() {
+		if golibs.Length(v) <= 0 {
+			continue
+		}
+		Clients.Delete(v)
+		if err := CloseClient(v, nil); err != nil {
+			logs.Error("清除不活跃连接:%s,出错：%s", v, err.Error())
+		} else {
+			logs.Info("清除不活跃连接:%s,成功", v)
+		}
+	}
 }
 
 func GetClient(clientAddr string) (*websocket.Conn, error) {

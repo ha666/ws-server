@@ -23,6 +23,9 @@ github.com/jpillora/backoff
 github.com/maurodelazeri/gorilla-reconnect
 # github.com/onsi/ginkgo v1.14.0
 ## explicit
+# github.com/robfig/cron v1.2.0
+## explicit
+github.com/robfig/cron
 # golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
 ## explicit
 golang.org/x/crypto/bcrypt
