@@ -35,6 +35,7 @@ func process(w http.ResponseWriter, r *http.Request) {
 		logs.Error("心跳失败,%s:%s", clientAddr, err.Error())
 		return
 	}
+	logs.Info("新客户端:%s", clientAddr)
 	go read(clientAddr, r)
 	go write(clientAddr)
 }
@@ -53,7 +54,7 @@ func read(clientAddr string, r *http.Request) {
 		}
 		dst, messageType, err := ws_common.ReadMessage(c)
 		if err != nil {
-			logs.Error("read err:", err)
+			logs.Error("read err,%s,err:%s", clientAddr, err.Error())
 			if strings.Contains(err.Error(), "close 1006") {
 				if err = service.CloseClient(clientAddr, c); err != nil {
 					logs.Error("read,客户端%s退出失败:%s", clientAddr, err.Error())

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/ha666/ws-server/service"
-	"github.com/robfig/cron"
 	"net/http"
 
 	"github.com/gorilla/websocket"
 	"github.com/ha666/logs"
+	"github.com/ha666/ws-server/service"
+	"github.com/robfig/cron"
 )
 
 var upgrader = websocket.Upgrader{
