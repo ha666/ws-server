@@ -4,6 +4,11 @@ github.com/cespare/xxhash
 # github.com/golang/protobuf v1.4.2
 ## explicit
 github.com/golang/protobuf/proto
+# github.com/google/gops v0.3.12
+## explicit
+github.com/google/gops/agent
+github.com/google/gops/internal
+github.com/google/gops/signal
 # github.com/gorilla/websocket v1.4.2
 ## explicit
 github.com/gorilla/websocket

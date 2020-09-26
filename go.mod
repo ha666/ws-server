@@ -5,6 +5,7 @@ go 1.14
 require (
 	github.com/cespare/xxhash v1.1.0 // indirect
 	github.com/golang/protobuf v1.4.2
+	github.com/google/gops v0.3.12
 	github.com/gorilla/websocket v1.4.2
 	github.com/ha666/golibs v2020.712.900+incompatible
 	github.com/ha666/logs v2019.830.1004+incompatible
