@@ -12,7 +12,7 @@ import (
 )
 
 func Ping(c *websocket.Conn, dst proto.Message, r *http.Request) {
-	val, ok := dst.(*protocol.Ping)
+	_, ok := dst.(*protocol.Ping)
 	if !ok {
 		logs.Error("解析ping消息出错")
 		return
@@ -30,5 +30,5 @@ func Ping(c *websocket.Conn, dst proto.Message, r *http.Request) {
 		logs.Error("心跳失败,%s:%s", clientAddr, err.Error())
 		return
 	}
-	logs.Info("\tmessageType:%s\tmessage: %s", "ping", val.PingVal)
+	//logs.Info("\tmessageType:%s\tmessage: %s", "ping", val.PingVal)
 }
